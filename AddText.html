@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="fabric.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="d-flex">
+        <nav class="sidebar">
+            <a href="">Elements</a>
+            <a href="images.html">Images</a>
+            <a class="active" href="AddText.html">Text</a>
+            <a href="index.html">Backgroud</a>
+        </nav>
+
+        <div class="content">
+            <h1 id="h1" onclick="addh1()" class="h1">Add a heading</h1>
+            <h6 id="h6" onclick="addh6()" class="h6">Add a subheading</h6>
+            <p id="p" onclick="addp()" class="p">Add a little bit of text</p>
+        </div>
+        <div class="mt-3 d-flex flex-column">
+            <div class="d-flex">
+                <input id="font-size" class="font-size" value="60" type="number" name="fsize" id="fsize" />
+                <button id="deletebtn" class="deletebtn">Delete</button>
+            </div>
+            <canvas width="500" height="600" id="a"></canvas>
+            <input class="d-none" placeholder="Update Text (Enter to change)" id="addnewText" type="text" value="" name="addnewText" />
+        </div>
+
+        <form class="mt-5 mr-2" name="boxForm" onsubmit="addBox()"></form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        var canvas = new fabric.Canvas("a");
+
+        var $ = function(id) {
+            return document.getElementById(id);
+        };
+
+        let h1 = $("h1");
+        let h6 = $("h6");
+        let p = $("p");
+        let font = $("font-size");
+        let addnewText = $("addnewText");
+
+        function addh1() {
+            text = new fabric.Text("Default Text", {
+                left: 100,
+                top: 200,
+                fontSize: font.value,
+                fontWeight: "bolder",
+                fill: "black",
+            });
+            text.lockUniScaling = true;
+            text.lockRotation = true;
+
+            //textArrayAdd(text);
+
+            canvas.add(text);
+
+            canvas.on("selection:created", function(e) {
+                addnewText.classList.remove("d-none");
+                addnewText.onchange = (event) => {
+                    console.log(event.target.value);
+                    console.log(e.target.text);
+                    canvas.getActiveObject().set("text", event.target.value);
+                    canvas.renderAll();
+                };
+            });
+        }
+
+        function addh6() {
+            text = new fabric.Text("Default Text", {
+                left: 100,
+                top: 200,
+                fontSize: font.value,
+                fontWeight: 500,
+                fill: "black",
+            });
+            text.lockUniScaling = true;
+            text.lockRotation = true;
+
+            //textArrayAdd(text);
+
+            canvas.add(text);
+            canvas.on("selection:created", function(e) {
+                addnewText.classList.remove("d-none");
+                addnewText.onchange = (event) => {
+                    console.log(event.target.value);
+                    console.log(e.target.text);
+                    canvas.getActiveObject().set("text", event.target.value);
+                    canvas.renderAll();
+                };
+            });
+        }
+
+        function addp() {
+            text = new fabric.Text("Default Text", {
+                left: 100,
+                top: 200,
+                fontSize: font.value,
+
+                fill: "black",
+            });
+            text.lockUniScaling = true;
+            text.lockRotation = true;
+
+            //textArrayAdd(text);
+
+            canvas.add(text);
+            canvas.on("selection:created", function(e) {
+                addnewText.classList.remove("d-none");
+                addnewText.onchange = (event) => {
+                    console.log(event.target.value);
+                    console.log(e.target.text);
+                    canvas.getActiveObject().set("text", event.target.value);
+                    canvas.renderAll();
+                };
+            });
+        }
+        canvas.on("object:selected", function(e) {
+            e.target.item(1).setText("Selectedoooooooo");
+        });
+
+        let deleteText = document.getElementById("deletebtn");
+        deleteText.addEventListener("click", TextDelete, false);
+
+        function TextDelete() {
+            canvas.remove(canvas.getActiveObject());
+        }
+    </script>
+</body>
+
+</html>

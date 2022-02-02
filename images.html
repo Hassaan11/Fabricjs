@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="fabric.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="d-flex">
+        <nav class="sidebar">
+            <a href="">Elements</a>
+            <a class="active" href="images.html">Images</a>
+            <a href="AddText.html">Text</a>
+            <a href="index.html">Backgroud</a>
+        </nav>
+
+        <div id="images" class="images">
+            <!-- <canvas width="200" height="200" id="a"></canvas> -->
+        </div>
+        <div class="mt-3 d-flex flex-column">
+            <div class="mb-5 d-flex">
+                <button id="deletebtn" class="deletebtn">Delete</button>
+            </div>
+            <canvas width="500" height="600" id="a"></canvas>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        var $ = function(id) {
+            return document.getElementById(id);
+        };
+
+        let images = $("images");
+        console.log(images);
+        fetch("https://picsum.photos/v2/list")
+            .then((response) => response.json())
+            .then((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    let canvas1 = document.createElement("canvas");
+
+                    canvas1.id = i + 1;
+
+                    let canvas = new fabric.Canvas(canvas1, {
+                        width: 200,
+                        height: 200,
+                        selectable: Boolean,
+                    });
+
+                    var image = new Image();
+                    image.classList.add("img1");
+                    image.src = data[i].download_url;
+                    image.style.width = "200px";
+                    image.style.height = "200px";
+                    image.lockUniScaling = true;
+                    image.lockRotation = true;
+
+                    images.appendChild(image);
+
+                    let img1 = document.getElementsByClassName("img1");
+
+                    for (let j = 0; j < img1.length; j++) {
+                        img1[j].addEventListener("click", function() {
+                            SelectImg(this);
+                        });
+                    }
+                    canvas.on("selection:created", function(e) {
+                        console.log("selection:create", e);
+                    });
+
+                    function SelectImg(element) {
+                        // element.classList.add("focusimg");
+                        console.log(element.src);
+                        let canvas2 = new fabric.Canvas("a");
+
+                        fabric.Image.fromURL(element.src, function(myImg) {
+                            let img2 = myImg.set({
+                                top: 150,
+                            });
+                            img2.scaleToHeight(500);
+                            img2.scaleToWidth(500);
+                            canvas2.add(img2);
+
+                            let deleteText = document.getElementById("deletebtn");
+                            deleteText.addEventListener("click", TextDelete, false);
+
+                            function TextDelete() {
+                                canvas2.remove(img2);
+
+                                canvas2.renderAll();
+                            }
+                        });
+                    }
+                }
+            });
+    </script>
+</body>
+
+</html>

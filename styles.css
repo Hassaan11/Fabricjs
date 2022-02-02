@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    width: 20%;
+    height: 100vh;
+    background-color: gray;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    padding: 20px;
+}
+
+.active {
+    background-color: white;
+}
+
+.canvas1 {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 80%;
+    margin-left: 20px;
+    flex-wrap: wrap;
+}
+
+.background-color {
+    height: 50px;
+    margin-top: 50px;
+}
+
+.font-size {
+    height: 50px;
+}
+
+.deletebtn {
+    margin-left: 10px;
+    height: 100%;
+}
+
+.images {
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.img1 {
+    margin: 10px;
+}
+
+.focusimg {
+    border: 5px solid black;
+}
+
+.content {
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .h1 {
+    cursor: pointer;
+    width: 100%;
+    background-color: grey;
+    font-weight: bolder;
+    font-size: 60px;
+    padding: 20px;
+}
+
+.content .h6 {
+    cursor: pointer;
+    width: 100%;
+    background-color: grey;
+    font-weight: 700;
+    font-size: 40px;
+    padding: 20px;
+}
+
+.content .p {
+    cursor: pointer;
+    width: 100%;
+    background-color: grey;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 20px;
+}

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="fabric.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="d-flex">
+        <nav class="sidebar">
+            <a href="">Elements</a>
+            <a href="images.html">Images</a>
+            <a href="AddText.html">Text</a>
+            <a class="active" href="">Backgroud</a>
+        </nav>
+        <div class="canvas1">
+            <canvas width="200" height="200" id="a"></canvas>
+            <canvas width="200" height="200" id="b"></canvas>
+            <canvas width="200" height="200" id="c"></canvas>
+            <canvas width="200" height="200" id="d"></canvas>
+            <canvas width="200" height="200" id="e"></canvas>
+            <canvas width="200" height="200" id="f"></canvas>
+            <canvas width="200" height="200" id="g"></canvas>
+            <canvas width="200" height="200" id="h"></canvas>
+            <canvas width="200" height="200" id="i"></canvas>
+            <canvas width="200" height="200" id="j"></canvas>
+        </div>
+        <div class="d-flex flex-column">
+            <input class="background-color" placeholder="color" id="background-color" type="text" value="" name="backgroundColor" />
+            <a id="lnkDownload" href="#">Download image</a>
+        </div>
+        <form class="mt-5 mr-2" name="boxForm" onsubmit="addBox()"></form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        var $ = function(id) {
+            return document.getElementById(id);
+        };
+        let backgroundColor = $("background-color");
+        console.log(backgroundColor);
+        let canvas = new fabric.Canvas("a");
+        let rect = new fabric.Rect({
+            fill: "red",
+            width: 150,
+            height: 150,
+        });
+        canvas.add(rect);
+
+        let canvas2 = new fabric.Canvas("b");
+        let rect2 = new fabric.Rect({
+            fill: "brown",
+            width: 150,
+            height: 150,
+        });
+        canvas2.add(rect2);
+        let canvas3 = new fabric.Canvas("c");
+        let rect3 = new fabric.Rect({
+            fill: "yellow",
+            width: 150,
+            height: 150,
+        });
+        canvas3.add(rect3);
+        let canvas4 = new fabric.Canvas("d");
+        let rect4 = new fabric.Rect({
+            fill: "black",
+            width: 150,
+            height: 150,
+        });
+        canvas4.add(rect4);
+        let canvas5 = new fabric.Canvas("e");
+        let rect5 = new fabric.Rect({
+            fill: "magenta",
+            width: 150,
+            height: 150,
+        });
+        canvas5.add(rect5);
+        let canvas6 = new fabric.Canvas("f");
+        let rect6 = new fabric.Rect({
+            fill: "orange",
+            width: 150,
+            height: 150,
+        });
+        canvas6.add(rect6);
+        let canvas7 = new fabric.Canvas("g");
+        let rect7 = new fabric.Rect({
+            fill: "purple",
+            width: 150,
+            height: 150,
+        });
+        canvas7.add(rect7);
+        let canvas8 = new fabric.Canvas("h");
+        let rect8 = new fabric.Rect({
+            fill: "grey",
+            width: 150,
+            height: 150,
+        });
+        canvas8.add(rect8);
+
+        let canvas9 = new fabric.Canvas("i");
+        let rect9 = new fabric.Rect({
+            fill: "blue",
+            width: 150,
+            height: 150,
+        });
+        canvas9.add(rect9);
+        let canvas10 = new fabric.Canvas("j");
+        let rect10 = new fabric.Rect({
+            fill: "green",
+            width: 150,
+            height: 150,
+        });
+        canvas10.add(rect10);
+
+        backgroundColor.onchange = (e) => {
+            if (canvas.getActiveObject()) {
+                canvas.getActiveObject().set("fill", e.target.value);
+                canvas.renderAll();
+            }
+            if (canvas2.getActiveObject()) {
+                canvas2.getActiveObject().set("fill", e.target.value);
+                canvas2.renderAll();
+            }
+            if (canvas3.getActiveObject()) {
+                canvas3.getActiveObject().set("fill", e.target.value);
+                canvas3.renderAll();
+            }
+            if (canvas4.getActiveObject()) {
+                canvas4.getActiveObject().set("fill", e.target.value);
+                canvas4.renderAll();
+            }
+            if (canvas5.getActiveObject()) {
+                canvas5.getActiveObject().set("fill", e.target.value);
+                canvas5.renderAll();
+            }
+            if (canvas6.getActiveObject()) {
+                canvas6.getActiveObject().set("fill", e.target.value);
+                canvas6.renderAll();
+            }
+            if (canvas7.getActiveObject()) {
+                canvas7.getActiveObject().set("fill", e.target.value);
+                canvas7.renderAll();
+            }
+            if (canvas8.getActiveObject()) {
+                canvas8.getActiveObject().set("fill", e.target.value);
+                canvas8.renderAll();
+            }
+            if (canvas9.getActiveObject()) {
+                canvas9.getActiveObject().set("fill", e.target.value);
+                canvas9.renderAll();
+            }
+            if (canvas10.getActiveObject()) {
+                canvas10.getActiveObject().set("fill", e.target.value);
+                canvas10.renderAll();
+            }
+        };
+
+        var imageSaver = document.getElementById("lnkDownload");
+        imageSaver.addEventListener("click", saveImage, false);
+
+        function saveImage(e) {
+            if (canvas.getActiveObject()) {
+                this.href = canvas.toDataURL({
+                    format: "png",
+                    quality: 0.8,
+                });
+                this.download = "canvas.png";
+            }
+            if (canvas2.getActiveObject()) {
+                this.href = canvas2.toDataURL({
+                    format: "png",
+                    quality: 0.8,
+                });
+                this.download = "canvas.png";
+            }
+            if (canvas3.getActiveObject()) {
+                this.href = canvas3.toDataURL({
+                    format: "png",
+                    quality: 0.8,
+                });
+                this.download = "canvas.png";
+            }
+            if (canvas4.getActiveObject()) {
+                this.href = canvas4.toDataURL({
+                    format: "png",
+                    quality: 0.8,
+                });
+                this.download = "canvas.png";
+            }
+            if (canvas5.getActiveObject()) {
+                this.href = canvas5.toDataURL({
+                    format: "png",
+                    quality: 0.8,
+                });
+                this.download = "canvas.png";
+            }
+            if (canvas6.getActiveObject()) {
+                this.href = canvas6.toDataURL({
+                    format: "png",
+                    quality: 0.8,
+                });
+                this.download = "canvas.png";
+            }
+            if (canvas7.getActiveObject()) {
+                this.href = canvas7.toDataURL({
+                    format: "png",
+                    quality: 0.8,
+                });
+                this.download = "canvas.png";
+            }
+            if (canvas8.getActiveObject()) {
+                this.href = canvas8.toDataURL({
+                    format: "png",
+                    quality: 0.8,
+                });
+                this.download = "canvas.png";
+            }
+            if (canvas9.getActiveObject()) {
+                this.href = canvas9.toDataURL({
+                    format: "png",
+                    quality: 0.8,
+                });
+                this.download = "canvas.png";
+            }
+            if (canvas10.getActiveObject()) {
+                this.href = canvas10.toDataURL({
+                    format: "png",
+                    quality: 0.8,
+                });
+                this.download = "canvas.png";
+            }
+        }
+    </script>
+</body>
+
+</html>
